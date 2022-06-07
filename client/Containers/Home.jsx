@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
 import ChatInput from "./../Components/ChatInput";
+import ChatDisplay from "./ChatDisplay";
 
 export default function Home(){
 
@@ -16,6 +17,7 @@ export default function Home(){
           alignItems: "center",
         }}
       >
+        <ChatDisplay />
         <ChatInput />
       </Box>
       

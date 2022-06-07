@@ -30,7 +30,6 @@ export default function Login() {
         // do login stuff here
         window.location.href = "/home";
         console.log('login successful');
-
       }
       else alert('Your login information was incorrect.')
     })
@@ -44,7 +43,6 @@ export default function Login() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          backgroundColor: "red",
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>

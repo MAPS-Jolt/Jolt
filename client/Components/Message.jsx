@@ -4,7 +4,12 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
 export default function Message(props) {
-  const { msgText, username } = props;
+  const { message, user } = props;
+
+  console.log(user);
+
+  // const username = user.username;
+  // const messageText = message;
 
   return (
     <Box  
@@ -20,10 +25,10 @@ export default function Message(props) {
         component="h1" 
         variant="h5"
       >
-        {username}
+        {user.username}
       </Typography>
       <Typography component="h1" variant="h5">
-        {msgText}
+        {message}
       </Typography>
     </Box>
   )

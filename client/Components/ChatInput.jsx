@@ -18,26 +18,22 @@ export default function ChatInput() {
     // const user = document.cookies
     // const userId = ...
 
-    // make a post request, passing in userId as parameter
-    // fetch(`/api/messages/${userId}`, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json; charset=utf-8" },
-    //   body: JSON.stringify({
-    //     // send user info in an object
-    //     user: {
-    //       _id: userId, 
-    //       username
-    //     },
-    //     // send message text
-    //     message: text,
-    //   }),
-    // })
-    // .then(res => res.json())
-    // .then(data => {
-
-    // })
-
-    alert(text);
+    // make a post request
+    fetch(`/api/messages`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify({
+        // send message text
+        message: text,
+      }),
+      // user should have a cookie with their username
+      credentials: 'include',
+    })
+    .then(res => res.json())
+    .then(data => {
+      // console.log(data);
+      alert(text);
+    })
   }
 
   return (  
@@ -70,7 +66,7 @@ export default function ChatInput() {
         />
         <Button
           type="submit"
-          fullWidth
+          // fullWidth
           variant="contained"
           sx={{
             justifySelf: "flex-end"
