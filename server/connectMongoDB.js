@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-const myURI =
-  'mongodb+srv://bklynpeter:334070aa@codesmith.saamf.mongodb.net/?retryWrites=true&w=majority';
+const myURI ='mongodb+srv://bklynpeter:334070aa@codesmith.saamf.mongodb.net/?retryWrites=true&w=majority';
 
 const URI = process.env.MONGO_URI || myURI;
 
