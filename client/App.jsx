@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './style.scss';
 
+import Home from './Containers/Home';
 import Login from './Components/Login';
 import SignUp from './Components/Signup';
 
@@ -11,9 +12,9 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            {/* <Route path="/home" element={</>} /> */}
+            <Route path="/" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </div>

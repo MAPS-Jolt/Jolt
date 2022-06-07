@@ -28,7 +28,7 @@ export default function Login() {
     .then(user => {
       if (user.username === username && user.password === password) {
         // do login stuff here
-        // window.location.href = "/home";
+        window.location.href = "/home";
         console.log('login successful');
 
       }
@@ -44,6 +44,7 @@ export default function Login() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          backgroundColor: "red",
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
