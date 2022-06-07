@@ -14,6 +14,12 @@ const userController = require('./controllers/userController');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// static server html
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+});
+// app.use(express.static(path.resolve(__dirname, '../public')));
+
 /**
  * route to relevant controllers
  */

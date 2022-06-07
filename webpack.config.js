@@ -5,7 +5,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   entry: './client/index.js',
   output: {
-    filename: './main.js',
+    filename: './index.js',
     path: path.resolve(__dirname, 'public'),
   },
   devServer: {
