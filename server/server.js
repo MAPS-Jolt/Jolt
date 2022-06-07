@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = 3000;
 
@@ -7,7 +8,7 @@ const userRouter = require('./routes/userRouter');
 const messageRouter = require('./routes/messageRouter');
 
 //handle parsing request body
-app.use(express.cookieParser());
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

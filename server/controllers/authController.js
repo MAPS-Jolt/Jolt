@@ -1,15 +1,33 @@
 const http = require('http');
-const express = require('express');
-
+const cookie = require('cookie');
 
 const authController = {};
 
+// set a cookie
 authController.setCookie = (req, res, next) => {
-  const cookie = 
-}
+  // username and password are in request body
+  const { username, password } = req.body;
 
-authController.checkCookie = (req, res, next) => {}
+  // saving username data to the cookies
+  res.cookie('username', username, {
+    expires: new Date('12 12 2022'),
+    secure: true,
+    httpOnly: true,
+    sameSite: 'Strict',
+  });
 
+  return next();
+};
 
+// get the cookie incoming request
+authController.checkCookie = (req, res, next) => {
+  // username and password are in request body
+  const { username, password } = req.body;
+
+  // show saved cookies
+  const cookies = req.cookies;
+  console.log(cookies);
+  return next();
+};
 
 module.exports = authController;
