@@ -9,16 +9,22 @@ import Container from "@mui/material/Container";
 
 export default function SignUp() {
   const handleSubmit = (event) => {
+    console.log('signing up');
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    fetch("/users/signup", {
+    fetch("/api/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify({
         username: data.get("username"),
         password: data.get("password"),
       }),
-    });
+    })
+    .then(res => {return res.json()})
+    .then(data => {
+      if (data.username) window.location.href = "/";
+      else alert('Username is taken, please try again')
+    })
   };
 
   return (

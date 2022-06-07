@@ -14,14 +14,26 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    fetch("/users/login", {
+    const username = data.get("username");
+    const password = data.get("password");
+    fetch("/api/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify({
-        username: data.get("username"),
-        password: data.get("password"),
+        username,
+        password
       }),
-    });
+    })
+    .then(res => res.json())
+    .then(user => {
+      if (user.username === username && user.password === password) {
+        // do login stuff here
+        // window.location.href = "/home";
+        console.log('login successful');
+
+      }
+      else alert('Your login information was incorrect.')
+    })
   };
 
   return (
