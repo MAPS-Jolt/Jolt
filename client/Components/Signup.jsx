@@ -1,7 +1,6 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -10,26 +9,26 @@ import Container from "@mui/material/Container";
 
 export default function SignUp() {
   const handleSubmit = (event) => {
+    console.log('signing up');
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // write fetch()
-    fetch("/signup", {
+    fetch("/api/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify({
         username: data.get("username"),
         password: data.get("password"),
       }),
-    });
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
+    })
+    .then(res => {return res.json()})
+    .then(data => {
+      if (data.username) window.location.href = "/";
+      else alert('Username is taken, please try again')
+    })
   };
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <Box
         sx={{
           marginTop: 8,

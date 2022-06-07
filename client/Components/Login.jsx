@@ -1,7 +1,6 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -15,23 +14,30 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    fetch("/login", {
+    const username = data.get("username");
+    const password = data.get("password");
+    fetch("/api/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify({
-        username: data.get("username"),
-        password: data.get("password"),
+        username,
+        password
       }),
-    });
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
+    })
+    .then(res => res.json())
+    .then(user => {
+      if (user.username === username && user.password === password) {
+        // do login stuff here
+        // window.location.href = "/home";
+        console.log('login successful');
+
+      }
+      else alert('Your login information was incorrect.')
+    })
   };
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <Box
         sx={{
           marginTop: 8,

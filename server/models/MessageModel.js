@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const URI = 'mongodb+srv://mkukim:codesmith@soloproject.cxgpk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+mongoose.connect(URI).then(() => console.log('Connected to Database'));
+
 const Schema = mongoose.Schema;
 
 const messageSchema = new Schema({
@@ -11,6 +14,4 @@ const messageSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const Message = mongoose.model(`Message`, messageSchema);
-
-module.exports = Message;
+module.exports = mongoose.model('Message', messageSchema);
