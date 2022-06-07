@@ -27,6 +27,7 @@
     "@mui/material": "^5.8.2",
     "babel-loader": "^8.2.4",
     "concurrently": "^6.0.2",
+    "cookie": "^0.5.0",
     "cookie-parser": "^1.4.6",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
