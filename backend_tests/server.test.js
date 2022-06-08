@@ -1,4 +1,3 @@
-// const server = 'http://localhost:3000/';
 const server = require('../server/server.js');
 const request = require('supertest');
 const mongoose = require("mongoose");
@@ -8,9 +7,10 @@ const User = require('../server/models/UserModel.js');
 
 const URI = 'mongodb+srv://bklynpeter:334070aa@codesmith.saamf.mongodb.net/eevee?retryWrites=true&w=majority';
 
+// @TODO: figure out how to test cookies, figure out how to properly close async operations  
+
 // TEST USERS
 describe('/users POST', () => {
-
   beforeAll(() => {
     mongoose.connect(URI, {
       useNewUrlParser: true,
@@ -71,10 +71,10 @@ describe('/users POST', () => {
 //     .expect(Cookies.set({'username': anotherNewUser.username}))
 // });
 
-// update profile - remove 'x' and edit username once there's a test user in the database
+// update profile - move to above 'describe' once ready to test
 //   describe('UPDATE /api/users/:id', () => {
 //     xit('responds with status 200', async () => {
-//       const id = (await User.findOne({ username: 'jolt' }))._id;
+//       const id = (await User.findOne({ username: 'umbreon' }))._id;
 //       return request(server)
 //         .patch(`/api/users/${id}`)
 //         .set({ name: 'jolteon', bio: 'electric' })
@@ -85,7 +85,6 @@ describe('/users POST', () => {
 
 // TEST MESSAGES
 describe('/api/messages', () => {
-
   beforeAll(() => {
     mongoose.connect(URI, {
       useNewUrlParser: true,
@@ -98,7 +97,7 @@ describe('/api/messages', () => {
   });
 
   // GET messages
-  it('responds with 200 status and application/json content type', async () => {
+  xit('responds with 200 status and application/json content type', async () => {
     await request(server)
       .get('/api/messages')
       // .expect('Content-Type', 'application/json; charset=utf-8')
@@ -106,11 +105,13 @@ describe('/api/messages', () => {
   });
 
   // POST message
-  // xit('responds exact message that was sent, returned from database', async () => {
-  //   const newMsg = { message: 'My test message!' };
-  //   await request(server)
-  //     .post('/messages')
-  //     .send(newMsg)
-  //     .then(res => expect(res.body).toEqual(newMsg));
-  // });
+  xit('responds with 200 status for message send success', async () => {
+    const newMsg = { username: 'umbreon', password: 'espeon', message: 'My test message!' };
+    console.log(newMsg);
+    await request(server)
+      .post('/api/messages')
+      .send(newMsg)
+      .set('Accept', 'application/json')
+      .expect(200);
+  });
 })

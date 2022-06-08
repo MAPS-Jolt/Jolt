@@ -24,6 +24,9 @@ authController.checkCookie = (req, res, next) => {
   // username and password are in request body
   const { username, password } = req.body;
 
+  // FOR TESTING: 
+  // res.locals.username = req.body.username;
+
   // show saved cookies
   const cookies = req.cookies;
 
