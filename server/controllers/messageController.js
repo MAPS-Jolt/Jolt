@@ -7,7 +7,6 @@ messageController.getMessages = (req, res, next) => {
   Message.find({})
     .then((messages) => {
       res.locals.messages = messages;
-      // console.log('all messages:', res.locals.messages);
       return next();
     })
     .catch((err) => {
@@ -26,8 +25,7 @@ messageController.postMessage = (req, res, next) => {
   const { message } = req.body;
 
   // create new message in database
-  Message.create({ message, user }).then((data) => {
-    console.log(data);
+  Message.create({ message, user, sentBy: user.username }).then((data) => {
     return next();
   });
 };

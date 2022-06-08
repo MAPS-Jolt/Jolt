@@ -8,19 +8,16 @@ import ChatDisplay from "./ChatDisplay";
 export default function Home(){
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <ChatDisplay />
-        <ChatInput />
-      </Box>
-      
+    <Container 
+      component="main" 
+      sx={{
+        padding:"3rem",
+        minWidth:"400px",
+        width: "90vw",
+      }}
+    >
+      <ChatDisplay />
+      <ChatInput />      
     </Container>
   )
 }

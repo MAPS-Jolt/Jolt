@@ -20,6 +20,7 @@ const messageSchema = new Schema({
     ref: 'User',
     required: true,
   },
+  sentBy: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 

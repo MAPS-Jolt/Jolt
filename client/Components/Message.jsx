@@ -4,31 +4,42 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
 export default function Message(props) {
-  const { message, user } = props;
+  const { message, sentBy, timeStamp } = props;
 
-  console.log(user);
-
-  // const username = user.username;
-  // const messageText = message;
+  // convert the timeStamp to a time (8:32:11 PM)
+  const timeString = new Date(timeStamp).toLocaleTimeString();
 
   return (
     <Box  
+      id={timeStamp}
+      timeStamp={timeStamp}
       sx={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        gap: "1em"
+        width: "100%",
+        display: "grid",
+        gridTemplateColumns: "1fr 4fr 1.1fr",
+        columnGap: ".5em",
+        alignItems: "baseline",
       }}
     >
       <Typography 
-        component="h1" 
-        variant="h5"
+        component="span" 
+        variant="subtitle1"
+        sx={{fontWeight:'bold', gridColumns: "0 1"}}
       >
-        {user.username}
+        {sentBy}
       </Typography>
-      <Typography component="h1" variant="h5">
+      <Typography component="span" variant="string" sx={{gridColumns: "1 2"}}>
         {message}
+      </Typography>
+      <Typography 
+        component="span" 
+        variant="caption"
+        sx={{
+          fontWeight: 'light',
+          justifySelf: 'flex-end',
+          gridColumns: "2 3"
+        }}>
+        {timeString}
       </Typography>
     </Box>
   )

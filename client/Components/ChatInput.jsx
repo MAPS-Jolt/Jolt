@@ -9,40 +9,49 @@ import Box from "@mui/material/Box";
 
 export default function ChatInput() {
   const handleSubmit = (event) => {
+    // prevent page reload
     event.preventDefault();
 
     // get the typed text from the user
     const text = new FormData(event.currentTarget).get("chat-input-text");
 
-    // get the current user's userId & username 
-    // const user = document.cookies
-    // const userId = ...
+    // if the text isn't empty
+    if (text.length > 0) {
+      // make a post request
+      fetch(`/api/messages`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        body: JSON.stringify({
+          // send message text
+          message: text,
+        }),
+        // user should have a cookie with their username
+        credentials: 'include',
+      })
+      // .then(() => {
+      //   console.log('the text should clear...')
+      //   // get the textbox element
+      //   const textBox = document.getElementById("chat-input-text");
+      //   // clear the text
+      //   textBox.value = '';
+      // })
+    }
+    console.log('the text should clear...')
+    // get the textbox element
+    const textBox = document.getElementById("chat-input-text");
+    // clear the text
+    textBox.value = '';
 
-    // make a post request
-    fetch(`/api/messages`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify({
-        // send message text
-        message: text,
-      }),
-      // user should have a cookie with their username
-      credentials: 'include',
-    })
-    .then(res => res.json())
-    .then(data => {
-      // console.log(data);
-      alert(text);
-    })
   }
 
   return (  
-    <Container component="main" maxWidth="xs">
+    <Container component="main" sx={{width: "100%",}}>
       <Box 
         component="form" 
         onSubmit={handleSubmit} 
         noValidate 
         sx={{
+          width: "100%",
           marginTop: 1,
           display: "flex",
           flexDirection: "row",
@@ -51,7 +60,7 @@ export default function ChatInput() {
           gap: "1em"
         }}
       >
-        {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar> */}
+        <Avatar sx={{ bgcolor: "secondary.main" }}></Avatar>
         <TextField
           margin="normal"
           required
@@ -61,15 +70,15 @@ export default function ChatInput() {
           name="chat-input-text"
           autoFocus
           sx={{
-            width: "200%"
+            width: "200%",
           }}
         />
         <Button
           type="submit"
-          // fullWidth
           variant="contained"
           sx={{
-            justifySelf: "flex-end"
+            justifySelf: "flex-end",
+            height: "100%"
           }}
         >
           Send
