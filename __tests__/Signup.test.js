@@ -4,6 +4,7 @@ import React from "React";
 import Signup from "../client/Components/Signup";
 import { unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
+import renderer from "react-test-renderer";
 
 /**
  * @jest-environment jsdom
@@ -98,4 +99,9 @@ test("Should identify if the spy function was called or not", () => {
   const spyFunction = jest.fn();
   spyFunction();
   expect(spyFunction).toHaveBeenCalled();
+});
+
+test("Renders Signup correctly per Snapshot", () => {
+  const signupTest = renderer.create(<Signup />).toJSON();
+  expect(signupTest).toMatchSnapshot();
 });

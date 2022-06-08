@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import React from "React";
 import Login from "../client/Components/Login";
 import { unmountComponentAtNode } from "react-dom";
+import renderer from "react-test-renderer";
 
 /**
  * @jest-environment jsdom
@@ -97,4 +98,9 @@ test("Should identify if the spy function was called or not", () => {
   const spyFunction = jest.fn();
   spyFunction();
   expect(spyFunction).toHaveBeenCalled();
+});
+
+test("Renders Login correctly per Snapshot", () => {
+  const loginTest = renderer.create(<Login />).toJSON();
+  expect(loginTest).toMatchSnapshot();
 });

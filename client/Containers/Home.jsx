@@ -15,6 +15,7 @@ export default function Home(){
         minWidth:"400px",
         width: "90vw",
       }}
+      data-testid="homeContainer"
     >
       <ChatDisplay />
       <ChatInput />      

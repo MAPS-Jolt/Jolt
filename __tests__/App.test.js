@@ -9,6 +9,7 @@ import React from "React";
 import App from "../client/App";
 import Login from "../client/Components/Login";
 import { unmountComponentAtNode } from "react-dom";
+import renderer from "react-test-renderer";
 
 /**
  * @jest-environment jsdom
@@ -42,4 +43,9 @@ test("Renders the App Container", () => {
 test("Defaults to Login page", () => {
   render(<App />, container);
   expect(<Login />).toBeTruthy();
+});
+
+test("Renders App correctly per Snapshot", () => {
+  const appTest = renderer.create(<App />).toJSON();
+  expect(appTest).toMatchSnapshot();
 });
