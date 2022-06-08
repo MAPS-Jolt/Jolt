@@ -1,66 +1,68 @@
-const server = require('../server/server.js');
-const request = require('supertest');
+global.TextEncoder = require("util").TextEncoder;
+global.TextDecoder = require("util").TextDecoder;
+const server = require("../server/server.js");
+const request = require("supertest");
 const mongoose = require("mongoose");
-const User = require('../server/models/UserModel.js');
+const User = require("../server/models/UserModel.js");
 
 // const Cookies = require('expect-cookies');
 
-const URI = 'mongodb+srv://bklynpeter:334070aa@codesmith.saamf.mongodb.net/eevee?retryWrites=true&w=majority';
+const URI =
+  "mongodb+srv://bklynpeter:334070aa@codesmith.saamf.mongodb.net/eevee?retryWrites=true&w=majority";
 
-// @TODO: figure out how to test cookies, figure out how to properly close async operations  
+// @TODO: figure out how to test cookies, figure out how to properly close async operations
 
 // TEST USERS
-describe('/users POST', () => {
+describe("/users POST", () => {
   beforeAll(() => {
     mongoose.connect(URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
   });
-  
+
   afterAll(async () => {
     await mongoose.disconnect();
   });
-  // signup test 
-  xit('responds with a status 200 and exact user info for user that signed up', async () => {
+  // signup test
+  xit("responds with a status 200 and exact user info for user that signed up", async () => {
     const newUser = { username: "jolteon1", password: "1234" };
     await request(server)
-      .post('/api/users/signup')
+      .post("/api/users/signup")
       .send(newUser)
-      .set('Accept', 'application/json')
-      .expect(res => { 
-        expect(res.body.username).toEqual(newUser.username); 
+      .set("Accept", "application/json")
+      .expect((res) => {
+        expect(res.body.username).toEqual(newUser.username);
         expect(res.body.password).toEqual(newUser.password);
       })
       .expect(200);
   });
 
   // login test
-  xit('responds with a status 200 and exact user info for user that logged in', async () => {
-    const user = { username: 'umbreon', password: 'espeon' };
+  xit("responds with a status 200 and exact user info for user that logged in", async () => {
+    const user = { username: "umbreon", password: "espeon" };
     await request(server)
-      .post('/api/users/login')
+      .post("/api/users/login")
       .send(user)
-      .set('Accept', 'application/json')
-      // .expect(Cookies.set({'username': user.username})) 
-      .expect(res => {
+      .set("Accept", "application/json")
+      // .expect(Cookies.set({'username': user.username}))
+      .expect((res) => {
         expect(res.body.password).toEqual(user.password);
         expect(res.body.username).toEqual(user.username);
       })
       .expect(200);
   });
 
-  // signup error test - duplicate user *userController might not need .verifyUser 
-  xit('responds with 500 error status on signup due to duplicate user info', async () => {
-    const duplicateUser = { username: 'umbreon', password: 'espeon'};
+  // signup error test - duplicate user *userController might not need .verifyUser
+  xit("responds with 500 error status on signup due to duplicate user info", async () => {
+    const duplicateUser = { username: "umbreon", password: "espeon" };
     await request(server)
-      .post('/api/users/signup')
+      .post("/api/users/signup")
       .send(duplicateUser)
-      .set('Accept', 'application/json')
+      .set("Accept", "application/json")
       .expect(500);
   });
-
-})
+});
 
 // check for setting cookies - move to above 'describe' once ready to test
 // xit('sets cookies once signed up', () => async {
@@ -84,34 +86,38 @@ describe('/users POST', () => {
 // })
 
 // TEST MESSAGES
-describe('/api/messages', () => {
+describe("/api/messages", () => {
   beforeAll(() => {
     mongoose.connect(URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
   });
-  
+
   afterAll(async () => {
     await mongoose.connection.close();
   });
 
   // GET messages
-  xit('responds with 200 status and application/json content type', async () => {
+  xit("responds with 200 status and application/json content type", async () => {
     await request(server)
-      .get('/api/messages')
+      .get("/api/messages")
       // .expect('Content-Type', 'application/json; charset=utf-8')
       .expect(200);
   });
 
   // POST message
-  xit('responds with 200 status for message send success', async () => {
-    const newMsg = { username: 'umbreon', password: 'espeon', message: 'My test message!' };
+  xit("responds with 200 status for message send success", async () => {
+    const newMsg = {
+      username: "umbreon",
+      password: "espeon",
+      message: "My test message!",
+    };
     console.log(newMsg);
     await request(server)
-      .post('/api/messages')
+      .post("/api/messages")
       .send(newMsg)
-      .set('Accept', 'application/json')
+      .set("Accept", "application/json")
       .expect(200);
   });
-})
+});
