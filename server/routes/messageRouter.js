@@ -19,7 +19,7 @@ messageRouter.post(
   messageController.postMessage,
   (req, res) => {
     console.log('message sent');
-    return res.status(200);
+    return res.sendStatus(200);
   }
 );
 
