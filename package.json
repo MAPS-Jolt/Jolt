@@ -3,8 +3,15 @@
   "description": "Chat app",
   "version": "1.0.0",
   "main": "webpack.config.js",
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
+  },
   "scripts": {
-    "test": "jest",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "start": "NODE_ENV=production nodemon server/server.js",
     "build": "NODE_ENV=production webpack",
     "dev": "concurrently \"cross-env NODE_ENV=development nodemon server/server.js\" \"cross-env NODE_ENV=development webpack serve --open\""
@@ -45,12 +52,15 @@
     "@babel/core": "^7.17.9",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-react": "^7.17.12",
     "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.2.0",
+    "babel-jest": "^28.1.1",
     "babel-loader": "^8.2.4",
     "expect-cookies": "^0.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.1",
     "node-sass": "^7.0.1",
     "supertest": "^6.2.3",
     "url-loader": "^4.1.1",
