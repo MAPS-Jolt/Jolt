@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "React";
-import App from "../client/App.jsx";
+import App from "../client/App";
 
 /**
  * @jest-environment jsdom

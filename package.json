@@ -5,12 +5,16 @@
   "main": "webpack.config.js",
   "jest": {
     "verbose": true,
+    "moduleNameMapper": {
+      "^.+\\.(css|less|scss)$": "babel-jest"
+    },
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
   },
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "jest --env=jsdom",
+    "test2": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test-coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "start": "NODE_ENV=production nodemon server/server.js",
     "build": "NODE_ENV=production webpack",
