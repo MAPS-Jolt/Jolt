@@ -5,7 +5,7 @@ const userController = {};
 userController.checkUserExists = (req, res, next) => {
   const { username, password } = req.body;
 
-  if (!username) return next({
+  if (username.length === 0) return next({
     log: 'error in userController.createUser',
     message: { err: 'Username must be a valid string' },
   });
@@ -16,6 +16,8 @@ userController.checkUserExists = (req, res, next) => {
     if (user) {
       return next({
         error: 'Username is taken'
+        // message: 'Username is taken',
+        // log: `Username already exists`
       })
     }
     else return next()
@@ -26,11 +28,11 @@ userController.createUser = (req, res, next) => {
   // request body will have username and password
   const { username, password } = req.body;
 
-  if (!username) return next({
+  if (username.length === 0) return next({
     log: 'error in userController.createUser',
     message: { err: 'Username must be a valid string' },
   });
-  if (!password) return next({
+  if (password.length === 0) return next({
     log: 'error in userController.createUser',
     message: { err: 'Password must be a valid string' },
   });

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const URI = 'mongodb+srv://mkukim:codesmith@soloproject.cxgpk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const URI = 'mongodb+srv://bklynpeter:334070aa@codesmith.saamf.mongodb.net/eevee?retryWrites=true&w=majority';
 mongoose.connect(URI).then(() => console.log('Connected to Database'));
 
 const Schema = mongoose.Schema;
