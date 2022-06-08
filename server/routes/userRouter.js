@@ -24,7 +24,8 @@ userRouter.post(
   userController.verifyUser,
   authController.setCookie,
   (req, res, next) => {
-    return res.status(200).json(res.locals.user);
+    if (res.locals.user) return res.status(200).json(res.locals.user);
+    else return res.sendStatus(204);
   }
 );
 

@@ -10,6 +10,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
+import jolteon from './../assets/jolteon-icon.png';
+
 export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,14 +26,16 @@ export default function Login() {
         password
       }),
     })
-    .then(res => res.json())
+    .then(res => {
+      if (res.status === 204) return alert('Your login information was incorrect.')
+      else return res.json()
+    })
     .then(user => {
-      if (user.username === username && user.password === password) {
+      if (user && user.username === username && user.password === password) {
         // do login stuff here
         window.location.href = "/home";
         console.log('login successful');
       }
-      else alert('Your login information was incorrect.')
     })
   };
 
@@ -45,8 +49,14 @@ export default function Login() {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-        </Avatar>
+        <Avatar 
+          src={jolteon}
+          style={{
+            margin: "10px",
+            width: "60px",
+            height: "60px",
+          }} 
+        />
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>

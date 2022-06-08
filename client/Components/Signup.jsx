@@ -7,6 +7,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
+import jolteon from './../assets/jolteon-icon.png';
+
 export default function SignUp() {
   const handleSubmit = (event) => {
     console.log('signing up');
@@ -37,8 +39,14 @@ export default function SignUp() {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-        </Avatar>
+        <Avatar 
+          src={jolteon}
+          style={{
+            margin: "10px",
+            width: "60px",
+            height: "60px",
+          }} 
+        />
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
