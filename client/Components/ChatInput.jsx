@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
+import jolteon from './../assets/jolteon-icon.png';
+
 
 
 export default function ChatInput() {
@@ -28,15 +30,8 @@ export default function ChatInput() {
         // user should have a cookie with their username
         credentials: 'include',
       })
-      // .then(() => {
-      //   console.log('the text should clear...')
-      //   // get the textbox element
-      //   const textBox = document.getElementById("chat-input-text");
-      //   // clear the text
-      //   textBox.value = '';
-      // })
     }
-    console.log('the text should clear...')
+    
     // get the textbox element
     const textBox = document.getElementById("chat-input-text");
     // clear the text
@@ -60,7 +55,14 @@ export default function ChatInput() {
           gap: "1em"
         }}
       >
-        <Avatar sx={{ bgcolor: "secondary.main" }}></Avatar>
+        <Avatar 
+          src={jolteon}
+          style={{
+            margin: "10px",
+            width: "60px",
+            height: "60px",
+          }} 
+        />
         <TextField
           margin="normal"
           required
