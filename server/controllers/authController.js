@@ -26,7 +26,10 @@ authController.checkCookie = (req, res, next) => {
 
   // show saved cookies
   const cookies = req.cookies;
-  console.log(cookies);
+
+  // save username from cookie into res.locals
+  res.locals.username = cookies.username;
+
   return next();
 };
 

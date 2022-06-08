@@ -11,7 +11,7 @@ userRouter.post(
   '/signup',
   userController.checkUserExists,
   userController.createUser,
-  // authController.setCookie,
+
   (req, res, next) => {
     return res.status(200).json(res.locals.newUser);
   }
@@ -22,6 +22,7 @@ userRouter.post(
   '/login',
   // authController.checkCookie,
   userController.verifyUser,
+  authController.setCookie,
   (req, res, next) => {
     return res.status(200).json(res.locals.user);
   }
