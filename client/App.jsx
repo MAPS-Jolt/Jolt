@@ -8,7 +8,7 @@ import SignUp from './Components/Signup';
 
 function App() {
   return (
-    <div className="main">
+    <div className="main" data-testid="appMainDiv">
       <div>
         <BrowserRouter>
           <Routes>
