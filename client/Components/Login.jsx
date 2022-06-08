@@ -28,9 +28,8 @@ export default function Login() {
     .then(user => {
       if (user.username === username && user.password === password) {
         // do login stuff here
-        // window.location.href = "/home";
+        window.location.href = "/home";
         console.log('login successful');
-
       }
       else alert('Your login information was incorrect.')
     })

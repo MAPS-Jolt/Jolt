@@ -11,8 +11,7 @@ userController.checkUserExists = (req, res, next) => {
   });
 
   // check if username already exists in database
-  User.findOne({ username })
-  .then(user => {
+  User.findOne({ username }).then((user) => {
     if (user) {
       return next({
         error: 'Username is taken'
@@ -39,13 +38,13 @@ userController.createUser = (req, res, next) => {
 
   User.create({ username, password })
     .then((data) => {
-      console.log("new user created");
+      console.log('new user created');
       res.locals.newUser = data;
       return next();
     })
     .catch((err) => {
       return {
-        log: "Error in userController.createUser",
+        log: 'Error in userController.createUser',
         message: { error: err },
       };
     });
@@ -57,18 +56,34 @@ userController.verifyUser = (req, res, next) => {
   const { username, password } = req.body;
 
   // find the user based on username
-  User.findOne({username})
-  .then(user => {
+  User.findOne({ username }).then((user) => {
+    console.log(user);
     // if the passwords match, log in
     if (user.password === password) {
       res.locals.user = user;
-      return next(); 
-    }
-    else return next({
-      log: 'error in userController.verifyUser',
-      message: { err: 'Some of your login information was not correct' },
+      return next();
+    } else
+      return next({
+        log: 'error in userController.verifyUser',
+        message: { err: 'Some of your login information was not correct' },
+      });
+  });
+};
+
+userController.getUser = (req, res, next) => {
+  // get the user based on the browser cookie, saved in res.locals from authController.checkCookie
+  User.findOne({ username: res.locals.username })
+    .then((user) => {
+      // save the user info into res.locals
+      res.locals.user = user;
+      return next();
     })
-  })
+    .catch((err) => {
+      return {
+        log: 'Error in userController.getUser',
+        message: { error: err },
+      };
+    });
 };
 
 // update profile
