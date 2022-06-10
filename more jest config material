@@ -1,0 +1,34 @@
+// const path = require('path');
+// module.exports = {
+//   rootDir: path.join(__dirname, './'),
+//   collectCoverageFrom: ['src/**/*.js?(x)'],
+//   coveragePathIgnorePatterns: [
+//     '/node_modules/',
+//     '/build/',
+//     '/test/',
+//     '/coverage/',
+//     './commitlint.config.js',
+//   ],
+//   coverageThreshold: {
+//     global: {
+//       branches: 0,
+//       functions: 0,
+//       lines: 0,
+//       statements: 0,
+//     },
+//   },
+//   moduleDirectories: ['node_modules', 'src', 'test'],
+//   moduleNameMapper: {
+//     '\\.module\\.(css|scss)$': 'identity-obj-proxy',
+//     '\\.(css|scss)$': require.resolve('./test/style-mock.js'),
+//   },
+//   modulePathIgnorePatterns: ['npm-cache', '.npm'],
+//   projects: ['./test/jest.lint.js', './test/jest.dom.js'],
+//   setupFiles: ['./test/setup.js'],
+//   verbose: true,
+//   watchPlugins: [
+//     'jest-watch-select-projects',
+//     'jest-watch-typeahead/filename',
+//     'jest-watch-typeahead/testname',
+//   ],
+// };
